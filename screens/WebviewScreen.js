@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { Platform, Text, View, StyleSheet } from 'react-native';
-import * as Location from 'expo-location';
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import { WebView } from 'react-native-webview';
 
-function WebviewScreen() {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.paragraph}>You are on WebviewScreen</Text>
-        </View>
-    );
+export default class App extends Component {
+    render() {
+        const run = `
+      document.body.style.backgroundColor = 'blue';
+      true;
+    `;
+
+        setTimeout(() => {
+            this.webref.injectJavaScript(run);
+        }, 3000);
+
+        return (
+            <View style={{ flex: 1 }}>
+                <WebView
+                    ref={(r) => (this.webref = r)}
+                    source={{
+                        uri: 'https://github.com/react-native-webview/react-native-webview',
+                    }}
+                />
+            </View>
+        );
+    }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
-    },
-    paragraph: {
-        fontSize: 18,
-        textAlign: 'center',
-    },
-});
-
-export default WebviewScreen;

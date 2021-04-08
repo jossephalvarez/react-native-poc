@@ -6,10 +6,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LocationScreen from './screens/LocationScreen';
 import CameraScreen from './screens/CameraScreen';
 import WebviewScreen from './screens/WebviewScreen';
+import BiometricScreen from './screens/BiometricScreen';
 // import {LocationScreen,CameraScreen, WebviewScreen } from './screens/index'
 
 
-const LOCATION='Location', CAMERA ='Camera', WEBVIEW='Webview';
+const LOCATION='Location', CAMERA ='Camera', WEBVIEW='Webview', BIOMETRIC= 'Biometric';
 
 function HomeScreen({ navigation }) {
     return (
@@ -27,6 +28,10 @@ function HomeScreen({ navigation }) {
                 title="Go to Webview"
                 onPress={() => navigation.navigate(WEBVIEW)}
             />
+            <Button
+                title="Go to Biometric"
+                onPress={() => navigation.navigate(BIOMETRIC)}
+            />
         </View>
     );
 }
@@ -41,6 +46,7 @@ function App() {
                 <Stack.Screen name={LOCATION} component={LocationScreen} />
                 <Stack.Screen name={CAMERA} component={CameraScreen} />
                 <Stack.Screen name={WEBVIEW} component={WebviewScreen} />
+                <Stack.Screen name={BIOMETRIC} component={BiometricScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
