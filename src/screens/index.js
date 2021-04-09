@@ -1,9 +1,8 @@
-const CameraScreen = require('./CameraScreen');
-const LocationScreen = require('./LocationScreen');
-const WebviewScreen = require('./WebviewScreen');
+import BiometricScreen from "./BiometricScreen";
+import LocationScreen from "./LocationScreen";
+import CameraScreen from "./CameraScreen";
+import WebviewScreen from "./WebviewScreen";
 
-module.exports = {
-    CameraScreen,
-    LocationScreen,
-    WebviewScreen,
-};
+export { BiometricScreen,LocationScreen,CameraScreen,WebviewScreen };
+
+

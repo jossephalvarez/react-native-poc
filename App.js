@@ -3,13 +3,10 @@ import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import LocationScreen from './src/screens/LocationScreen';
-import CameraScreen from './src/screens/CameraScreen';
-import WebviewScreen from './src/screens/WebviewScreen';
-import BiometricScreen from './src/screens/BiometricScreen';
-// import {LocationScreen,CameraScreen, WebviewScreen } from './screens/index';
+import { BiometricScreen, CameraScreen, LocationScreen, WebviewScreen } from './src/screens';
 import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions';
+import basicStyles  from './src/styles/basicStyles';
 
 const LOCATION='Location', CAMERA ='Camera', WEBVIEW='Webview', BIOMETRIC= 'Biometric';
 
@@ -26,7 +23,7 @@ const getToken = async () =>{
 
 function HomeScreen({ navigation }) {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={basicStyles.container}>
             <Text>Welcome!!</Text>
             <Button
                 title="Go to Location"

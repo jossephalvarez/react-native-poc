@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Platform, Text, View, StyleSheet } from 'react-native';
 import * as Location from 'expo-location';
+import basicStyles from '../../styles/basicStyles'
 
-function LocationScreen() {
+export default function LocationScreen() {
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
 
@@ -27,23 +28,8 @@ function LocationScreen() {
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.paragraph}>{text}</Text>
+        <View style={basicStyles.container}>
+            <Text style={basicStyles.paragraph}>{text}</Text>
         </View>
     );
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
-    },
-    paragraph: {
-        fontSize: 18,
-        textAlign: 'center',
-    },
-});
-
-export default LocationScreen;
+};

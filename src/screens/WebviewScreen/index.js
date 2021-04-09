@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { WebView } from 'react-native-webview';
 
-export default class App extends Component {
+export default class WebviewScreen extends Component {
     render() {
         const run = `
       document.body.style.backgroundColor = 'blue';
