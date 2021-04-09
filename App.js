@@ -3,10 +3,10 @@ import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import LocationScreen from './screens/LocationScreen';
-import CameraScreen from './screens/CameraScreen';
-import WebviewScreen from './screens/WebviewScreen';
-import BiometricScreen from './screens/BiometricScreen';
+import LocationScreen from './src/screens/LocationScreen';
+import CameraScreen from './src/screens/CameraScreen';
+import WebviewScreen from './src/screens/WebviewScreen';
+import BiometricScreen from './src/screens/BiometricScreen';
 // import {LocationScreen,CameraScreen, WebviewScreen } from './screens/index';
 import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions';
