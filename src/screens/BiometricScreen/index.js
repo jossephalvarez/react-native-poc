@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   View,
@@ -12,70 +12,6 @@ import {
 } from 'react-native';
 
 import * as LocalAuthentication from 'expo-local-authentication';
-
-export default function BiometricScreen({ navigation }) {
-  const [isModalVisible, setIsModalVisible] = useState(true);
-
-  async function authenticate() {
-    const hasPassword = await LocalAuthentication.isEnrolledAsync();
-
-    if (!hasPassword) return;
-
-    const { success, error } = await LocalAuthentication.authenticateAsync();
-
-    if (success) {
-      Alert.alert('Autenticación exitosa ');
-    } else {
-      Alert.alert('Falló la autenticación. ¡Por favor, introduzca su contraseña! ');
-    }
-
-    setIsModalVisible(false);
-  }
-
-  Platform.OS === 'ios' && authenticate();
-
-  return (
-    <SafeAreaView style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#444"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        placeholderTextColor="#444"
-      />
-      <TouchableOpacity style={styles.button}>
-        <Text>Entrar</Text>
-      </TouchableOpacity>
-
-      {Platform.OS === 'android' && (
-      <Modal
-        animationType="slide"
-        transparent
-        visible={isModalVisible}
-        onShow={authenticate}
-      >
-        <View style={styles.modal}>
-          <Text style={styles.authText}>
-            Esta pantalla requiere autenticacion
-          </Text>
-          <TouchableOpacity
-            onPress={() => {
-              LocalAuthentication.cancelAuthenticate();
-              setIsModalVisible(false);
-              navigation.goBack();
-            }}
-          >
-            <Text style={styles.cancelText}>Cancelar</Text>
-          </TouchableOpacity>
-        </View>
-      </Modal>
-      )}
-    </SafeAreaView>
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -124,3 +60,52 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+export default function BiometricScreen({ navigation }) {
+  const [isModalVisible, setIsModalVisible] = useState(true);
+
+  async function authenticate() {
+    const hasPassword = await LocalAuthentication.isEnrolledAsync();
+
+    if (!hasPassword) return;
+
+    const { success, error } = await LocalAuthentication.authenticateAsync();
+
+    if (success) {
+      Alert.alert('Autenticación exitosa ');
+    } else {
+      Alert.alert('Falló la autenticación. ¡Por favor, introduzca su contraseña! ');
+    }
+
+    setIsModalVisible(false);
+  }
+
+  Platform.OS === 'ios' && authenticate();
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <TextInput style={styles.input} placeholder="Email" placeholderTextColor="#444" />
+      <TextInput style={styles.input} placeholder="Senha" placeholderTextColor="#444" />
+      <TouchableOpacity style={styles.button}>
+        <Text>Entrar</Text>
+      </TouchableOpacity>
+
+      {Platform.OS === 'android' && (
+        <Modal animationType="slide" transparent visible={isModalVisible} onShow={authenticate}>
+          <View style={styles.modal}>
+            <Text style={styles.authText}>Esta pantalla requiere autenticacion</Text>
+            <TouchableOpacity
+              onPress={() => {
+                LocalAuthentication.cancelAuthenticate();
+                setIsModalVisible(false);
+                navigation.goBack();
+              }}
+            >
+              <Text style={styles.cancelText}>Cancelar</Text>
+            </TouchableOpacity>
+          </View>
+        </Modal>
+      )}
+    </SafeAreaView>
+  );
+}
